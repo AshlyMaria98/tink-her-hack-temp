@@ -13,7 +13,7 @@
 - Member 2: Ashly Maria P.S - College of engineering perumon
 
 ### Hosted Project Link
-[mention your project hosted link here]
+ https://tink-her-hack-temp-phi.vercel.app/
 
 
 ### Project Description
