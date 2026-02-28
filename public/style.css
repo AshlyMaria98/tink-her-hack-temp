@@ -1,0 +1,397 @@
+/* Color Variables */
+:root {
+    --bg-dark: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --cyber-lime: #d9f99d;
+    --electric-blue: #3b82f6;
+    --border-color: #334155;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.logo .accent {
+    color: var(--cyber-lime);
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.sidebar nav ul li:hover, .sidebar nav ul li.active {
+    background-color: rgba(217, 249, 157, 0.1);
+    color: var(--cyber-lime);
+}
+
+/* Main Dashboard */
+.dashboard {
+    flex: 1;
+    padding: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Input Section */
+.input-section {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--cyber-lime);
+}
+
+textarea, select {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--electric-blue);
+}
+
+.primary-btn {
+    background-color: var(--cyber-lime);
+    color: var(--bg-dark);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background-color: #bef264;
+}
+
+/* Terminal Styles */
+.terminal {
+    background-color: #000;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.terminal-header {
+    background-color: #1a1a1a;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.terminal-title {
+    color: #888;
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--cyber-lime);
+    font-size: 0.95rem;
+    min-height: 150px;
+}
+
+.log-line {
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Output Section */
+.result-section {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--electric-blue);
+}
+
+.result-header h3 {
+    color: var(--electric-blue);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Markdown Custom Styles */
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--cyber-lime);
+}
+
+.markdown-body p, .markdown-body li {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+.markdown-body strong {
+    color: var(--text-main);
+}
+
+.markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+.markdown-body th, .markdown-body td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+}
+
+.markdown-body th {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--electric-blue);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .dashboard {
+        padding: 1.5rem;
+    }
+}
+/* Tab Switching Logic */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Header with PDF Button */
+.result-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+/* Secondary Button for PDF */
+.secondary-btn {
+    background-color: transparent;
+    color: var(--cyber-lime);
+    border: 1px solid var(--cyber-lime);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background-color: rgba(217, 249, 157, 0.1);
+}
+
+/* Placeholder boxes for other tabs */
+.placeholder-box {
+    background-color: var(--bg-card);
+    border: 1px dashed var(--border-color);
+    padding: 3rem;
+    text-align: center;
+    border-radius: 12px;
+    color: var(--text-muted);
+}
+/* Learning Resource Chips */
+.resource-chip {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--electric-blue);
+    color: var(--text-main);
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.resource-chip:hover {
+    background-color: var(--electric-blue);
+    color: #fff;
+    transform: translateY(-2px);
+}
+/* --- PDF EXPORT PRINT FIXES --- */
+.markdown-body h3 {
+    page-break-before: auto;
+    page-break-after: avoid; /* Don't leave a header stranded at the bottom of a page */
+}
+
+
+#mermaidContainer {
+    page-break-inside: avoid; /* Keep the diagram on one page */
+}
+/* --- CODE BLOCK FIXES (Prevents Overflow) --- */
+.markdown-body pre {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    white-space: pre-wrap; /* THE MAGIC FIX: Forces long text to wrap! */
+    word-wrap: break-word;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.markdown-body code {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--cyber-lime);
+}
+
+#mermaidContainer svg {
+    max-width: 100% !important;
+    height: auto !important;
+}
+/* --- OVERFLOW & TYPOGRAPHY FIXES --- */
+.markdown-body {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Force long unbroken lines (like SQL code or URLs) to wrap */
+.markdown-body p, 
+.markdown-body li, 
+.markdown-body code, 
+.markdown-body pre {
+    white-space: pre-wrap !important; 
+    word-break: break-word !important;
+    overflow-x: hidden;
+}
+
+/* Tame the "big sizes" of the architecture headers */
+.markdown-body h1 { font-size: 1.8rem; margin-top: 1.5rem; }
+.markdown-body h2 { font-size: 1.4rem; margin-top: 1.5rem; }
+.markdown-body h3 { font-size: 1.2rem; margin-top: 1.2rem; }
+
+/* Force the SVG to be responsive */
+#mermaidContainer svg {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+/* --- THE NUCLEAR OVERFLOW FIX --- */
+.markdown-body p, 
+.markdown-body li, 
+.markdown-body pre, 
+.markdown-body code {
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    /* This forces long unbroken strings (like SQL or URLs) to wrap */
+    word-break: break-word !important; 
+}
+
+/* Ensure the SVG background doesn't render transparent in the PDF */
+#mermaidContainer svg {
+    background-color: rgba(255,255,255,0.05); 
+    border-radius: 8px;
+}

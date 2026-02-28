@@ -2,27 +2,28 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# idea2infra 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: Quiet pixels
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: Ann Mary Anilson - College of engineering perumon
+- Member 2: Ashly Maria P.S - College of engineering perumon
 
 ### Hosted Project Link
 [mention your project hosted link here]
 
+
 ### Project Description
-[2-3 lines about what your project does]
+idea2infra is an AI-powered Master System Architect designed to help developers and startup founders instantly plan their software infrastructure. By simply inputting an app idea and expected user scale, the system automatically generates a comprehensive architecture blueprint, complete with tech stack recommendations, dynamic visual flowcharts, and interactive cloud cost estimations. It perfectly bridges the gap between a raw concept and a ready-to-build technical foundation.
 
 ### The Problem statement
-[What problem are you solving?]
+Many beginners and non-technical founders have great software ideas but lack the technical expertise to design the underlying system infrastructure. They struggle to choose the right tech stack, design database schemas, or estimate monthly cloud hosting costs, which significantly delays project development.
 
 ### The Solution
-[How are you solving it?]
+idea2infra instantly transforms raw app ideas into professional technical blueprints. By simply typing an app idea and expected user scale, our system uses the Gemini API to generate a professional architecture plan. It visually maps the system using dynamic Mermaid.js flowcharts, provides an interactive AWS/Firebase cost estimator, curates learning resources, and exports a ready-to-code Frontend/Backend boilerplate `.zip` workspace.
 
 ---
 
@@ -31,25 +32,25 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+- Languages used: HTML5, CSS3, Vanilla JavaScript
+
+- Frameworks used: None (Pure Vanilla implementation for extreme lightweight performance)
+
+- Libraries used: Mermaid.js, html2pdf.js, JSZip, Marked.js
+
+- Tools used: VS Code, Git, GitHub, Google Gemini 2.5 Flash API
+
 
 **For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
-
----
+  none.this is a web software project
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1: Feature 1: AI Architecture Generation: Instantly turns text descriptions into full system blueprints with      strict prompt-injection guardrails.
+- Feature 2: Dynamic Flowcharts: Renders Mermaid.js architecture diagrams visually on the screen that scale perfectly for exports.
+- Feature 3: Interactive Cost Estimator: Context-aware calculator that estimates monthly cloud hosting budgets based on the AI's recommended tech stack (Enterprise vs BaaS vs Static).
+- Feature 4: Boilerplate Exporter & PDF: Single-click download of a ready-to-code Frontend/Backend .zip starter workspace and a pixel-perfect PDF report.
 
 ---
 
@@ -58,24 +59,23 @@ List the key features of your project:
 ### For Software:
 
 #### Installation
-```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
-```
+# Clone the repository
+git clone https://github.com/your-username/tink-her-hack-temp.git
+
+# Navigate to the project directory
+cd tink-her-hack-temp
+
+# Add your API Key
+# 1. Open src/script.js
+# 2. Replace the GEMINI_API_KEY variable with your actual Google Gemini API key
+
 
 #### Run
-```bash
-[Run commands - e.g., npm start, python app.py]
-```
+# No complex build tools required! 
+# Simply open the index.html file in your browser:
+open public/index.html
 
-### For Hardware:
-
-#### Components Required
-[List all components needed with specifications]
-
-#### Circuit Setup
-[Explain how to set up the circuit]
-
----
+# Alternatively, use VS Code Live Server extension to serve on port 5500
 
 ## Project Documentation
 
@@ -83,53 +83,15 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![alt text](<docs/Screenshot 1.png>)
+  The idea2infra Input Dashboard and terminal-style loading sequence
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![alt text](docs/Screenshot2.png)
+The AI-Generated System Architecture and dynamically rendered Mermaid.js Flowchart.
+![alt text](docs/Screenshot3.png)
+The Interactive Cost Estimator, tailored Learning Hub, and Export Workspace buttons.
 
-#### Diagrams
-
-**System Architecture:**
-
-![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
-
-**Application Workflow:**
-
-![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
-
----
-
-### For Hardware:
-
-#### Schematic & Circuit
-
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-#### Build Photos
-
-![Team](Add photo of your team here)
-
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
-
----
 
 ## Additional Documentation
 
@@ -137,284 +99,76 @@ List the key features of your project:
 
 #### API Documentation
 
-**Base URL:** `https://api.yourproject.com`
+**Base URL:** `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`
+
+*Note: idea2infra operates entirely client-side (serverless). We do not host a custom backend database; instead, we communicate directly with the external Google Gemini API.*
 
 ##### Endpoints
 
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
-- **Response:**
-```json
-{
-  "status": "success",
-  "data": {}
-}
-```
-
-**POST /api/endpoint**
-- **Description:** [What it does]
+**POST /generateContent**
+- **Description:** Sends the user's project idea to the Gemini API with strict architecture prompt constraints.
 - **Request Body:**
 ```json
 {
-  "field1": "value1",
-  "field2": "value2"
+  "contents": [{
+    "parts": [{
+      "text": "Act as a Master System Architect. Generate an architecture for: [User Input]"
+    }]
+  }]
 }
-```
-- **Response:**
-```json
+Response:
+
+JSON
 {
-  "status": "success",
-  "message": "Operation completed"
+  "candidates": [{
+    "content": {
+      "parts": [{
+        "text": "### Executive Summary\n[Generated Markdown and Mermaid Code]"
+      }]
+    }
+  }]
 }
 ```
 
-[Add more endpoints as needed...]
-
----
-
-### For Mobile Apps:
-
-#### App Flow Diagram
-
-![App Flow](docs/app-flow.png)
-*Explain the user flow through your application*
-
-#### Installation Guide
-
-**For Android (APK):**
-1. Download the APK from [Release Link]
-2. Enable "Install from Unknown Sources" in your device settings:
-   - Go to Settings > Security
-   - Enable "Unknown Sources"
-3. Open the downloaded APK file
-4. Follow the installation prompts
-5. Open the app and enjoy!
-
-**For iOS (IPA) - TestFlight:**
-1. Download TestFlight from the App Store
-2. Open this TestFlight link: [Your TestFlight Link]
-3. Click "Install" or "Accept"
-4. Wait for the app to install
-5. Open the app from your home screen
-
-**Building from Source:**
-```bash
-# For Android
-flutter build apk
-# or
-./gradlew assembleDebug
-
-# For iOS
-flutter build ios
-# or
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
-```
-
----
-
-### For Hardware Projects:
-
-#### Bill of Materials (BOM)
-
-| Component | Quantity | Specifications | Price | Link/Source |
-|-----------|----------|----------------|-------|-------------|
-| Arduino Uno | 1 | ATmega328P, 16MHz | ₹450 | [Link] |
-| LED | 5 | Red, 5mm, 20mA | ₹5 each | [Link] |
-| Resistor | 5 | 220Ω, 1/4W | ₹1 each | [Link] |
-| Breadboard | 1 | 830 points | ₹100 | [Link] |
-| Jumper Wires | 20 | Male-to-Male | ₹50 | [Link] |
-| [Add more...] | | | | |
-
-**Total Estimated Cost:** ₹[Amount]
-
-#### Assembly Instructions
-
-**Step 1: Prepare Components**
-1. Gather all components listed in the BOM
-2. Check component specifications
-3. Prepare your workspace
-![Step 1](images/assembly-step1.jpg)
-*Caption: All components laid out*
-
-**Step 2: Build the Power Supply**
-1. Connect the power rails on the breadboard
-2. Connect Arduino 5V to breadboard positive rail
-3. Connect Arduino GND to breadboard negative rail
-![Step 2](images/assembly-step2.jpg)
-*Caption: Power connections completed*
-
-**Step 3: Add Components**
-1. Place LEDs on breadboard
-2. Connect resistors in series with LEDs
-3. Connect LED cathodes to GND
-4. Connect LED anodes to Arduino digital pins (2-6)
-![Step 3](images/assembly-step3.jpg)
-*Caption: LED circuit assembled*
-
-**Step 4: [Continue for all steps...]**
-
-**Final Assembly:**
-![Final Build](images/final-build.jpg)
-*Caption: Completed project ready for testing*
-
----
-
-### For Scripts/CLI Tools:
-
-#### Command Reference
-
-**Basic Usage:**
-```bash
-python script.py [options] [arguments]
-```
-
-**Available Commands:**
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
-
-**Options:**
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
-
-**Examples:**
-
-```bash
-# Example 1: Basic usage
-python script.py input.txt
-
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
-
-#### Demo Output
-
-**Example 1: Basic Processing**
-
-**Input:**
-```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
-```
-
-**Command:**
-```bash
-python script.py sample.txt
-```
-
-**Output:**
-```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-**Input:**
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-**Command:**
-```bash
-python script.py -v --format json data.json
-```
-
-**Output:**
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
-```
-
----
-
-## Project Demo
-
-### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
-
-*Explain what the video demonstrates - key features, user flow, technical highlights*
-
-### Additional Demos
-[Add any extra demo materials/links - Live site, APK download, online demo, etc.]
-
----
 
 ## AI Tools Used (Optional - For Transparency Bonus)
+AI Tools Used
+Tool Used: Google Gemini
 
-If you used AI tools during development, document them here for transparency:
+Purpose: Pair-programming assistance, debugging library conflicts, and refining CSS layouts.
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+Debugging SVG scaling issues with html2pdf.js and Mermaid.js.
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
+Generating the boilerplate code folder structures for the JSZip exporter.
 
-**Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
+Refining CSS flexbox properties for a responsive dashboard.
 
-**Percentage of AI-generated code:** [Approximately X%]
+### Key Prompts Used:
 
-**Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
+"How do I force html2canvas to read a Mermaid SVG at 100% width instead of a hardcoded pixel size?"
 
-*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
+"Write a JavaScript function using JSZip to create a frontend and backend folder structure with boilerplate code."
 
----
+"Write a JavaScript function to dynamically scan text for the words 'AWS' or 'Firebase' and change a pricing multiplier."
 
-## Team Contributions
+### Percentage of AI-generated code: Approximately 25%
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+### Human Contributions:
 
----
+Core application architecture and feature planning.
 
-## License
+Gemini API integration logic and JSON parsing.
 
-This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LICENSE) file for details.
+Strict prompt-engineering and guardrail implementation.
 
-**Common License Options:**
-- MIT License (Permissive, widely used)
-- Apache 2.0 (Permissive with patent grant)
-- GPL v3 (Copyleft, requires derivative works to be open source)
+UI/UX design decisions, color theming, and responsive layout assembly.
 
----
+### Team Contributions
+Ann Mary Anilson: Frontend layout design, UI/UX styling, CSS implementation, responsive DOM manipulation, and project documentation.
+
+Ashly Maria P.S: Gemini API integration, prompt engineering guardrails, PDF generation logic, JSZip boilerplate export feature, and Interactive Cost Estimator logic.
+
+### License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 Made with ❤️ at TinkerHub

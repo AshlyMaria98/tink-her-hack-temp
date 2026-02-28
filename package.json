@@ -1,0 +1,12 @@
+{
+  "name": "idea2infra",
+  "version": "1.0.0",
+  "description": "AI-powered System Architecture Generator",
+  "main": "src/script.js",
+  "scripts": {
+    "start": "echo \"Open public/index.html in your browser to run the app\""
+  },
+  "keywords": ["ai", "architecture", "hackathon"],
+  "author": "Your Team",
+  "license": "MIT"
+}

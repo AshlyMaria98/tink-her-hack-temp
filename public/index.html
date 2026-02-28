@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>idea2infra: The AI System Architect</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>idea2infra<span class="accent">.</span></h1>
+            </div>
+            <nav>
+                <ul id="sidebarMenu">
+                    <li class="active" data-target="tab-new">New Architecture</li>
+                    <li data-target="tab-saved">Saved Projects</li>
+                    <li data-target="tab-settings">Settings</li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="dashboard">
+            
+            <div id="tab-new" class="tab-content active">
+                <header>
+                    <h2>System Architect</h2>
+                    <p>Describe your product idea to generate a comprehensive system architecture.</p>
+                </header>
+
+                <section class="input-section">
+                    <div class="form-group">
+                        <label for="projectDesc">Project Description</label>
+                        <textarea id="projectDesc" placeholder="E.g., A real-time chat application..." rows="5"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="expectedScale">Expected Scale</label>
+                        <select id="expectedScale">
+                            <option value="Small">Small (MVP, < 1000 users)</option>
+                            <option value="Medium">Medium (Growing Startup, 10k-100k users)</option>
+                            <option value="Large">Large (Enterprise, 1M+ users)</option>
+                        </select>
+                    </div>
+
+                    <button id="generateBtn" class="primary-btn">Generate Architecture</button>
+                </section>
+
+                <section id="terminalContainer" class="terminal hidden">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="terminal-title">idea2infra-build-process</span>
+                    </div>
+                    <div id="terminalOutput" class="terminal-body"></div>
+                </section>
+
+               
+                    <section id="resultContainer" class="result-section hidden">
+                    <div class="result-header-actions">
+                        <h3>Generated Architecture Plan</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="downloadPdfBtn" class="secondary-btn">Download PDF</button>
+                            <button id="downloadCodeBtn" class="primary-btn" style="padding: 0.5rem 1rem;">Download Starter Code</button>
+                        </div>
+                    </div>
+                    
+                    <div id="pdfExportArea" style="padding: 20px; background-color: #0f172a; color: #e2e8f0; border-radius: 8px;">
+                        
+                        <div id="mermaidContainer" class="hidden" style="margin-bottom: 2rem; text-align: center; background-color: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;"></div>
+                        
+                        <div id="markdownOutput" class="markdown-body"></div>
+                        
+                    </div>
+                </section>
+
+                <div id="costEstimatorContainer" class="hidden" style="margin-top: 2rem; padding: 1.5rem; background-color: rgba(217, 249, 157, 0.05); border: 1px dashed var(--cyber-lime); border-radius: 8px;">
+                   
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Based on the recommended architecture, estimate your monthly hosting budget.</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 1rem;">
+                            <div>
+                                <label for="userSlider" style="display: flex; justify-content: space-between;">
+                                    <span>Expected Monthly Active Users (MAU)</span>
+                                    <span id="userCountDisplay" style="color: white; font-weight: bold;">1,000</span>
+                                </label>
+                                <input type="range" id="userSlider" min="100" max="100000" step="100" value="1000" style="width: 100%; margin-top: 0.5rem; accent-color: var(--electric-blue);">
+                            </div>
+                            
+                            <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: bold;">Estimated Total:</span>
+                                <span id="totalCostDisplay" style="font-size: 1.5rem; color: var(--electric-blue); font-weight: bold;">$0.00</span>
+                            </div>
+                            <p id="costDisclaimer" style="font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: -0.5rem;">*Base rate: Firebase/Static tier</p>
+                        </div>
+                    </div>
+                    <div id="learningHubContainer" class="hidden" style="margin-top: 2.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+                        <h3 style="color: var(--cyber-lime); margin-bottom: 1rem;">📚 Recommended Learning Resources</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">Your mentor recommended these video tutorials based on the tech stack above:</p>
+                        <div id="learningLinks" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                            </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="tab-saved" class="tab-content hidden">
+                <header>
+                    <h2>Saved Projects</h2>
+                    <p>View your previously generated architectures.</p>
+                </header>
+                <div class="placeholder-box">
+                    <p>No projects saved yet. (Database integration coming soon!)</p>
+                </div>
+            </div>
+
+            <div id="tab-settings" class="tab-content hidden">
+                <header>
+                    <h2>Settings</h2>
+                    <p>Manage your idea2infra preferences.</p>
+                </header>
+                <div class="placeholder-box">
+                    <p>API Key Management and Theme settings will go here.</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+   <script src="../src/script.js"></script>
+</body>
+</html>
