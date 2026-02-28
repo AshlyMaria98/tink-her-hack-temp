@@ -66,16 +66,16 @@ git clone https://github.com/your-username/tink-her-hack-temp.git
 cd tink-her-hack-temp
 
 # Add your API Key
-# 1. Open src/script.js
-# 2. Replace the GEMINI_API_KEY variable with your actual Google Gemini API key
+ 1. Open src/script.js
+ 2. Replace the GEMINI_API_KEY variable with your actual Google Gemini API key
 
 
 #### Run
-# No complex build tools required! 
-# Simply open the index.html file in your browser:
+ No complex build tools required! 
+ Simply open the index.html file in your browser:
 open public/index.html
 
-# Alternatively, use VS Code Live Server extension to serve on port 5500
+ Alternatively, use VS Code Live Server extension to serve on port 5500
 
 ## Project Documentation
 
