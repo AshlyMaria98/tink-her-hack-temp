@@ -6,7 +6,7 @@ const resultContainer = document.getElementById('resultContainer');
 const markdownOutput = document.getElementById('markdownOutput');
 
 // Placeholder for your Gemini API Key
-const GEMINI_API_KEY = 'AIzaSyDS0wQygS70YP1w7y6PBIJCa9dDkncgUO4'; 
+const GEMINI_API_KEY = 'AIzaSyCu8IOT_JgQ8LIjKys_FcqAVVmcZ2pmuuI'; 
 
 // Terminal simulation logs
 const loadingSteps = [
