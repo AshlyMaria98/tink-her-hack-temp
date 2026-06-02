@@ -1,4 +1,18 @@
 node_modules/
 .DS_Store
-__pycache__/
+
+# Python virtual environments
+venv/
+backend/venv/
+
+# Environment variables
 .env
+backend/.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+script_backup.js

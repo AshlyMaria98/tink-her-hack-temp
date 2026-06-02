@@ -32,6 +32,29 @@
                 </header>
 
                 <section class="input-section">
+                    <div id="examplePrompts" class="example-prompts">
+    <p>Try an example:</p>
+
+    <button class="prompt-chip"
+data-prompt="Build a Netflix-like video streaming platform with subscriptions, user authentication, recommendations, and video delivery.">
+🎬 Netflix Clone
+</button>
+
+<button class="prompt-chip"
+data-prompt="Build an AI chatbot platform with user accounts, conversation history, and Gemini integration.">
+🤖 AI Chat App
+</button>
+
+<button class="prompt-chip"
+data-prompt="Build a food delivery platform like Swiggy with restaurants, ordering, payments, and live tracking.">
+🍔 Food Delivery Platform
+</button>
+
+<button class="prompt-chip"
+data-prompt="Build a personal portfolio website to showcase projects, skills, certificates, and contact information.">
+💼 Portfolio Website
+</button>
+</div>
                     <div class="form-group">
                         <label for="projectDesc">Project Description</label>
                         <textarea id="projectDesc" placeholder="E.g., A real-time chat application..." rows="5"></textarea>
@@ -46,7 +69,7 @@
                         </select>
                     </div>
 
-                    <button id="generateBtn" class="primary-btn">Generate Architecture</button>
+                    <button id="generateBtn" class="primary-btn generate-btn">Generate Architecture</button>
                 </section>
 
                 <section id="terminalContainer" class="terminal hidden">
@@ -61,19 +84,41 @@
 
                
                     <section id="resultContainer" class="result-section hidden">
-                    <div class="result-header-actions">
-                        <h3>Generated Architecture Plan</h3>
-                        <div style="display: flex; gap: 10px;">
-                            <button id="downloadPdfBtn" class="secondary-btn">Download PDF</button>
-                            <button id="downloadCodeBtn" class="primary-btn" style="padding: 0.5rem 1rem;">Download Starter Code</button>
-                        </div>
-                    </div>
+                      <div id="generationBadge" class="hidden"></div>
+           <div class="result-header-actions">
+    <h3>Generated Architecture Plan</h3>
+
+    <div style="display: flex; gap: 10px;">
+        <button id="copyArchitectureBtn" class="secondary-btn">
+            📋 Copy Architecture
+        </button>
+
+        <button id="downloadPdfBtn" class="secondary-btn">
+            Download PDF
+        </button>
+
+        <button id="downloadCodeBtn" class="primary-btn">
+            Download Starter Code
+        </button>
+
+        <button id="downloadDiagramBtn" class="secondary-btn">
+            🖼 Download Diagram
+        </button>
+        
+    </div>
+</div>
                     
                     <div id="pdfExportArea" style="padding: 20px; background-color: #0f172a; color: #e2e8f0; border-radius: 8px;">
                         
                         <div id="mermaidContainer" class="hidden" style="margin-bottom: 2rem; text-align: center; background-color: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;"></div>
                         
-                        <div id="markdownOutput" class="markdown-body"></div>
+                        <div id="complexityContainer" class="hidden">
+    <h3>🏗 Architecture Complexity</h3>
+    <div id="complexityScore">0/10</div>
+    <div id="complexityLabel">Beginner Friendly</div>
+</div>
+
+<div id="markdownOutput" class="markdown-body"></div>
                         
                     </div>
                 </section>
@@ -112,18 +157,25 @@
                     <h2>Saved Projects</h2>
                     <p>View your previously generated architectures.</p>
                 </header>
-                <div class="placeholder-box">
-                    <p>No projects saved yet. (Database integration coming soon!)</p>
-                </div>
-            </div>
+                <input
+    type="text"
+    id="searchProjects"
+    placeholder="Search projects..."
+>
 
+<div id="savedProjectsList" class="placeholder-box">
+    <p>No projects saved yet.</p>
+</div>
+</div>
             <div id="tab-settings" class="tab-content hidden">
                 <header>
                     <h2>Settings</h2>
                     <p>Manage your idea2infra preferences.</p>
                 </header>
                 <div class="placeholder-box">
-                    <p>API Key Management and Theme settings will go here.</p>
+                    <button id="themeToggleBtn" class="primary-btn">
+    🌙 Toggle Theme
+</button>
                 </div>
             </div>
 
@@ -133,6 +185,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-   <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.8/dist/purify.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

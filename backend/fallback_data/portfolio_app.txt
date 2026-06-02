@@ -1,0 +1,57 @@
+### Executive Summary
+
+This architecture supports a personal portfolio website showcasing projects, resume, and contact information.
+
+### Architecture Diagram
+
+```mermaid
+graph TD
+Visitor --> Frontend
+Frontend --> Backend
+Backend --> Database
+```
+
+### 1. Architecture Style
+
+Static Web Application
+
+### 2. Recommended Tech Stack
+
+* Frontend:
+
+  * Framework: React
+  * Hosting: Vercel
+
+* Backend:
+
+  * Platform: Firebase
+
+* Database:
+
+  * Type: Firestore
+
+* AI Services:
+
+  * Provider: None
+
+* Storage:
+
+  * Platform: Firebase Storage
+
+### 3. Database Schema
+
+* projects
+* contact_messages
+
+### 4. Core API Endpoints
+
+* GET /projects
+* POST /contact
+
+### 5. Scalability Strategy
+
+Use CDN caching and Firebase scaling.
+
+### 6. Deployment Strategy
+
+Deploy frontend on Vercel and backend services on Firebase.

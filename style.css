@@ -8,7 +8,16 @@
     --electric-blue: #3b82f6;
     --border-color: #334155;
 }
+.light-theme {
 
+    --bg-dark: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --cyber-lime: #65a30d;
+    --electric-blue: #2563eb;
+    --border-color: #cbd5e1;
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -127,13 +136,15 @@ textarea:focus, select:focus {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%;
+   
 }
 
 .primary-btn:hover {
     background-color: #bef264;
 }
-
+.generate-btn {
+    width: 100%;
+}
 /* Terminal Styles */
 .terminal {
     background-color: #000;
@@ -328,6 +339,10 @@ textarea:focus, select:focus {
 
 #mermaidContainer {
     page-break-inside: avoid; /* Keep the diagram on one page */
+    width: 100%;
+    overflow-x: auto;
+    text-align: center;
+    margin-top: 20px;
 }
 /* --- CODE BLOCK FIXES (Prevents Overflow) --- */
 .markdown-body pre {
@@ -349,6 +364,8 @@ textarea:focus, select:focus {
 #mermaidContainer svg {
     max-width: 100% !important;
     height: auto !important;
+    display: block;
+    margin: auto;
 }
 /* --- OVERFLOW & TYPOGRAPHY FIXES --- */
 .markdown-body {
@@ -374,9 +391,10 @@ textarea:focus, select:focus {
 
 /* Force the SVG to be responsive */
 #mermaidContainer svg {
-    width: 100% !important;
-    max-width: 100% !important;
+     max-width: 100%;
     height: auto !important;
+    display: block;
+    margin: auto;
 }
 /* --- THE NUCLEAR OVERFLOW FIX --- */
 .markdown-body p, 
@@ -394,4 +412,69 @@ textarea:focus, select:focus {
 #mermaidContainer svg {
     background-color: rgba(255,255,255,0.05); 
     border-radius: 8px;
+}
+#generationBadge{
+    display:inline-block;
+    margin-bottom:15px;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:0.85rem;
+    font-weight:600;
+}
+
+.badge-ai{
+    background:rgba(34,197,94,0.15);
+    color:#22c55e;
+    border:1px solid #22c55e;
+}
+
+.badge-fallback{
+    background:rgba(250,204,21,0.15);
+    color:#facc15;
+    border:1px solid #facc15;
+}
+#complexityContainer {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(0,255,150,0.08);
+    border: 1px solid rgba(0,255,150,0.3);
+    text-align: center;
+}
+
+#complexityScore {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--cyber-lime);
+}
+
+#complexityLabel {
+    margin-top: 5px;
+    color: var(--text-muted);
+}
+.example-prompts {
+    margin-bottom: 1rem;
+}
+
+.example-prompts p {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.prompt-chip {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--border-color);
+    color: var(--text-light);
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.prompt-chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--electric-blue);
 }

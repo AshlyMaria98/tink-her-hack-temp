@@ -1,0 +1,62 @@
+### Executive Summary
+
+This architecture proposes a simple real-time chat application using Supabase and React. The system supports authentication, real-time messaging, and AI-generated responses for small-scale users.
+
+### Architecture Diagram
+
+```mermaid
+graph TD
+Client --> Backend
+Backend --> Database
+Backend --> Storage
+Backend --> AIService
+```
+
+### 1. Architecture Style
+
+Monolithic Backend-as-a-Service
+
+### 2. Recommended Tech Stack
+
+* Frontend:
+
+  * Framework: React
+  * Hosting: Vercel
+
+* Backend:
+
+  * Platform: Supabase
+  * Runtime: Node.js
+
+* Database:
+
+  * Type: PostgreSQL
+
+* AI Services:
+
+  * Provider: OpenAI API
+
+* Storage:
+
+  * Platform: Supabase Storage
+
+### 3. Database Schema
+
+* users
+* chat_rooms
+* messages
+
+### 4. Core API Endpoints
+
+* POST /login
+* POST /signup
+* GET /messages
+* POST /messages
+
+### 5. Scalability Strategy
+
+Use Supabase managed scaling and CDN hosting.
+
+### 6. Deployment Strategy
+
+Deploy frontend on Vercel and backend on Supabase.

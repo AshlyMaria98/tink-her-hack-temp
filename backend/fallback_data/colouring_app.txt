@@ -1,0 +1,61 @@
+### Executive Summary
+
+This architecture supports an AI-powered colouring book app for kids where uploaded images are converted into colouring pages using AI services.
+
+### Architecture Diagram
+
+```mermaid
+graph TD
+MobileApp --> Backend
+Backend --> Database
+Backend --> Storage
+Backend --> AIService
+```
+
+### 1. Architecture Style
+
+Serverless Monolith
+
+### 2. Recommended Tech Stack
+
+* Frontend:
+
+  * Framework: React Native
+  * Hosting: Vercel
+
+* Backend:
+
+  * Platform: Supabase
+  * Runtime: Edge Functions
+
+* Database:
+
+  * Type: PostgreSQL
+
+* AI Services:
+
+  * Provider: OpenAI API
+
+* Storage:
+
+  * Platform: Supabase Storage
+
+### 3. Database Schema
+
+* users
+* colouring_pages
+* generated_images
+
+### 4. Core API Endpoints
+
+* POST /upload
+* GET /gallery
+* POST /generate
+
+### 5. Scalability Strategy
+
+Leverage Supabase managed infrastructure and AI API scaling.
+
+### 6. Deployment Strategy
+
+Frontend hosted on Vercel with backend services managed through Supabase.
