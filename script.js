@@ -98,7 +98,7 @@ async function fetchArchitecture(description, scale) {
 
 const timeoutId = setTimeout(() => {
     controller.abort();
-}, 30000); // 30 seconds timeout
+}, 15000); // 15 seconds timeout
 
 const response = await fetch(`${BACKEND_URL}/generate`, {
     method: 'POST',
@@ -268,17 +268,27 @@ localStorage.setItem(
 
 // TIMEOUT / NO INTERNET / FETCH FAILED
 if (
-    error.name === 'AbortError' ||
+    
     error.message.includes('Failed to fetch') ||
     error.message.includes('NetworkError')
 ) {
 
     terminalOutput.innerHTML += `
         <p class="log-line" style="color: #ffbd2e;">
-            [SYSTEM] AI unavailable. Loading cached fallback architecture...
+             [SYSTEM] Network connection not detected.
+        </p>
+        <p class="log-line" style="color:#ffbd2e;">
+             [SYSTEM] Please connect to the internet and retry architecture generation.
         </p>
     `;
+}
+else if (error.name === 'AbortError') {
 
+    terminalOutput.innerHTML += `
+    <p class="log-line" style="color:#ffbd2e;">
+        [SYSTEM] AI unavailable. Loading cached fallback architecture...
+    </p>
+    `;
     // CALL BACKEND FALLBACK DIRECTLY
    const fallbackResponse = await fetch(`${BACKEND_URL}/fallback`, {
         method: 'POST',
