@@ -364,6 +364,8 @@ Approximately 30–45%
 - Documentation and project presentation support
 - Testing and validation
 - System integration and debugging
+
+
 **Ashly Maria P.S**
 - Flask backend development
 - Prompt engineering and guardrail implementation
