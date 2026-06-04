@@ -152,19 +152,43 @@ data-prompt="Build a personal portfolio website to showcase projects, skills, ce
                 </section>
             </div>
 
-            <div id="tab-saved" class="tab-content hidden">
-                <header>
-                    <h2>Saved Projects</h2>
-                    <p>View your previously generated architectures.</p>
-                </header>
-                <input
-    type="text"
-    id="searchProjects"
-    placeholder="Search projects..."
->
+          <div id="tab-saved" class="tab-content hidden">
+    <header>
+        <h2>Saved Projects</h2>
+        <p>View your previously generated architectures.</p>
+    </header>
 
-<div id="savedProjectsList" class="placeholder-box">
-    <p>No projects saved yet.</p>
+    <!-- PROJECT LIST VIEW -->
+    <div id="savedListView">
+        <input type="text" id="searchProjects" placeholder="Search projects...">
+        <div id="savedProjectsList" class="placeholder-box">
+            <p>No projects saved yet.</p>
+        </div>
+    </div>
+
+    <!-- OPENED PROJECT VIEW (hidden by default) -->
+<div id="savedProjectView" class="hidden">
+    <button id="backToListBtn" class="secondary-btn" style="margin-bottom: 1.5rem;">
+        ← Back to Saved Projects
+    </button>
+    <div class="result-section">
+
+        <!-- ACTION BUTTONS -->
+        <div class="result-header-actions">
+            <h3>Saved Architecture</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button id="savedCopyBtn" class="secondary-btn">📋 Copy Architecture</button>
+                <button id="savedDownloadPdfBtn" class="secondary-btn">Download PDF</button>
+                <button id="savedDownloadDiagramBtn" class="secondary-btn">🖼 Download Diagram</button>
+            </div>
+        </div>
+
+        <div id="savedPdfExportArea" style="padding: 20px; background-color: #0f172a; color: #e2e8f0; border-radius: 8px;">
+            <div id="savedMermaidContainer" style="margin-bottom: 2rem; text-align: center; background-color: rgba(255,255,255,0.05); padding: 1rem; border-radius: 8px;"></div>
+            <div id="savedMarkdownOutput" class="markdown-body"></div>
+        </div>
+
+    </div>
 </div>
 </div>
             <div id="tab-settings" class="tab-content hidden">

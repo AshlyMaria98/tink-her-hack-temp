@@ -1,3 +1,6 @@
+const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://127.0.0.1:5000'
+    : 'https://your-render-app-name.onrender.com';
 // DOM Elements
 const generateBtn = document.getElementById('generateBtn');
 const terminalContainer = document.getElementById('terminalContainer');
@@ -30,7 +33,8 @@ generateBtn.addEventListener('click', async () => {
         return;
     }
 
-    
+      // Clear saved project persistence so refresh doesn't re-render old project
+    localStorage.removeItem('openProjectIndex');
 // 1. Hide and COMPLETELY CLEAR previous results
     resultContainer.classList.add('hidden');
     markdownOutput.innerHTML = ''; // Wipe old text
@@ -96,7 +100,7 @@ const timeoutId = setTimeout(() => {
     controller.abort();
 }, 30000); // 30 seconds timeout
 
-const response = await fetch('http://127.0.0.1:5000/generate', {
+const response = await fetch(`${BACKEND_URL}/generate`, {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -276,7 +280,7 @@ if (
     `;
 
     // CALL BACKEND FALLBACK DIRECTLY
-    const fallbackResponse = await fetch('http://127.0.0.1:5000/fallback', {
+   const fallbackResponse = await fetch(`${BACKEND_URL}/fallback`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -398,19 +402,24 @@ const tabContents = document.querySelectorAll('.tab-content');
 
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
-        // Remove active class from all menu items
         menuItems.forEach(i => i.classList.remove('active'));
-        // Add active class to clicked item
         item.classList.add('active');
 
-        // Hide all tabs
         tabContents.forEach(tab => tab.classList.remove('active', 'hidden'));
         tabContents.forEach(tab => tab.classList.add('hidden'));
 
-        // Show the target tab
         const targetId = item.getAttribute('data-target');
         document.getElementById(targetId).classList.remove('hidden');
         document.getElementById(targetId).classList.add('active');
+
+        // PERSISTENCE: save which tab is active
+        localStorage.setItem('activeTab', targetId);
+
+        // PERSISTENCE: if user manually navigates away from new-arch tab,
+        // clear any open project so Case 2 (back to list) works correctly
+        if (targetId !== 'tab-new') {
+            localStorage.removeItem('openProjectIndex');
+        }
     });
 });
 // --- 2. PDF DOWNLOAD LOGIC ---
@@ -885,90 +894,46 @@ function loadSavedProjects() {
 function viewSavedProject(index) {
 
     const savedProjects =
-        JSON.parse(
-            localStorage.getItem('savedProjects')
-        ) || [];
+        JSON.parse(localStorage.getItem('savedProjects')) || [];
 
     const project = savedProjects[index];
-
     if (!project) return;
 
+    // PERSISTENCE: save open project index
+    localStorage.setItem('openProjectIndex', index);
+
+    // Extract and render mermaid
     const mermaidRegex = /``` ?mermaid\n([\s\S]*?)```/;
-const match = project.content.match(mermaidRegex);
+    const match = project.content.match(mermaidRegex);
+    let cleanText = project.content;
 
-let cleanText = project.content;
+    const savedMermaidContainer = document.getElementById('savedMermaidContainer');
+    savedMermaidContainer.innerHTML = '';
 
-const mermaidContainer =
-    document.getElementById('mermaidContainer');
+    if (match) {
+        const mermaidCode = match[1];
+        cleanText = project.content.replace(mermaidRegex, '');
 
-if (match) {
+        mermaid.initialize({ startOnLoad: false, theme: 'dark', flowchart: { htmlLabels: false } });
 
-    const mermaidCode = match[1];
+        mermaid.render('savedGraph_' + Date.now(), mermaidCode).then(({ svg }) => {
+            savedMermaidContainer.innerHTML = svg;
+            const svgElement = savedMermaidContainer.querySelector('svg');
+            if (svgElement) {
+                svgElement.style.maxWidth = "100%";
+                svgElement.style.height = "auto";
+                svgElement.removeAttribute("width");
+                svgElement.removeAttribute("height");
+            }
+        });
+    }
 
-    cleanText =
-        project.content.replace(
-            mermaidRegex,
-            ''
-        );
+    document.getElementById('savedMarkdownOutput').innerHTML =
+        DOMPurify.sanitize(marked.parse(cleanText));
 
-    mermaidContainer.classList.remove('hidden');
-
-    mermaid.initialize({
-        startOnLoad: false,
-        theme: 'dark',
-        flowchart: {
-            htmlLabels: false
-        }
-    });
-
-    mermaid.render(
-    'savedGraph_' + Date.now(),
-    mermaidCode
-).then(({ svg }) => {
-
-    mermaidContainer.innerHTML = svg;
-
-    const svgElement =
-        mermaidContainer.querySelector('svg');
-
-  if (svgElement) {
-
-    svgElement.style.maxWidth = "100%";
-    svgElement.style.height = "auto";
-
-    svgElement.removeAttribute("width");
-    svgElement.removeAttribute("height");
-}
-
-});
-
-} else {
-
-    mermaidContainer.classList.add('hidden');
-    mermaidContainer.innerHTML = '';
-
-}
-
-document.getElementById('markdownOutput').innerHTML =
-    DOMPurify.sanitize(
-        marked.parse(cleanText)
-    );
-
-    document.getElementById('resultContainer')
-        .classList.remove('hidden');
-
-    // Switch tabs properly
-    document.getElementById('tab-saved')
-        .classList.add('hidden');
-
-    document.getElementById('tab-new')
-        .classList.remove('hidden');
-
-    document.getElementById('tab-new')
-        .classList.add('active');
-
-    document.getElementById('tab-saved')
-        .classList.remove('active');
+    // Show project view, hide list view — stay inside tab-saved
+    document.getElementById('savedListView').classList.add('hidden');
+    document.getElementById('savedProjectView').classList.remove('hidden');
 }
 window.viewSavedProject = viewSavedProject;
 loadSavedProjects();
@@ -1062,3 +1027,114 @@ if (savedTheme === 'light') {
         'light-theme'
     );
 }
+// ===== PAGE REFRESH PERSISTENCE =====
+(function restoreAppState() {
+    const activeTab = localStorage.getItem('activeTab');
+    const openProjectIndex = localStorage.getItem('openProjectIndex');
+
+    if (!activeTab) return;
+
+    // Restore correct tab
+    tabContents.forEach(tab => { tab.classList.remove('active'); tab.classList.add('hidden'); });
+    menuItems.forEach(i => i.classList.remove('active'));
+
+    const targetTab = document.getElementById(activeTab);
+    if (targetTab) {
+        targetTab.classList.remove('hidden');
+        targetTab.classList.add('active');
+    }
+
+    const matchingItem = document.querySelector(`#sidebarMenu li[data-target="${activeTab}"]`);
+    if (matchingItem) matchingItem.classList.add('active');
+
+    // If a saved project was open, re-render it inside tab-saved
+    if (activeTab === 'tab-saved' && openProjectIndex !== null) {
+        viewSavedProject(parseInt(openProjectIndex, 10));
+    }
+})();
+// Back button: return to saved projects list
+document.getElementById('backToListBtn').addEventListener('click', () => {
+    localStorage.removeItem('openProjectIndex');
+    document.getElementById('savedProjectView').classList.add('hidden');
+    document.getElementById('savedListView').classList.remove('hidden');
+});
+// Copy architecture for saved project view
+document.getElementById('savedCopyBtn').addEventListener('click', async () => {
+    try {
+        const text = document.getElementById('savedMarkdownOutput').innerText;
+        await navigator.clipboard.writeText(text);
+        const btn = document.getElementById('savedCopyBtn');
+        const original = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => btn.textContent = original, 2000);
+    } catch (err) {
+        alert('Failed to copy.');
+    }
+});
+
+// Download PDF for saved project view
+document.getElementById('savedDownloadPdfBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('savedDownloadPdfBtn');
+    const original = btn.textContent;
+    btn.textContent = 'Packaging PDF...';
+    btn.disabled = true;
+
+    const svgNode = document.querySelector('#savedMermaidContainer svg');
+    let oldWidth = '', oldHeight = '';
+    if (svgNode) {
+        const rect = svgNode.getBoundingClientRect();
+        oldWidth = svgNode.style.width;
+        oldHeight = svgNode.style.height;
+        svgNode.setAttribute('width', rect.width + 'px');
+        svgNode.setAttribute('height', rect.height + 'px');
+        svgNode.style.width = rect.width + 'px';
+        svgNode.style.height = rect.height + 'px';
+    }
+
+    const opt = {
+        margin: 10,
+        filename: 'Idea2infra_Saved_Architecture.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#0f172a', scrollY: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
+    };
+
+    try {
+        await html2pdf().set(opt).from(document.getElementById('savedPdfExportArea')).save();
+    } catch (err) {
+        console.error('PDF error:', err);
+    } finally {
+        if (svgNode) {
+            svgNode.setAttribute('width', oldWidth || '100%');
+            svgNode.setAttribute('height', oldHeight || 'auto');
+            svgNode.style.width = oldWidth || '100%';
+            svgNode.style.height = oldHeight || 'auto';
+        }
+        btn.textContent = original;
+        btn.disabled = false;
+    }
+});
+
+// Download diagram for saved project view
+document.getElementById('savedDownloadDiagramBtn').addEventListener('click', () => {
+    const svg = document.querySelector('#savedMermaidContainer svg');
+    if (!svg) { alert('No diagram available.'); return; }
+
+    const svgData = new XMLSerializer().serializeToString(svg);
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+
+    img.onload = function () {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+        const link = document.createElement('a');
+        link.download = 'saved_architecture_diagram.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    };
+
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+});
