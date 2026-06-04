@@ -1,6 +1,6 @@
 const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://127.0.0.1:5000'
-    : 'https://your-render-app-name.onrender.com';
+    : 'https://idea2infra-backend.onrender.com';
 // DOM Elements
 const generateBtn = document.getElementById('generateBtn');
 const terminalContainer = document.getElementById('terminalContainer');
