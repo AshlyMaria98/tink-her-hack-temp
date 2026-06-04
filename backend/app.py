@@ -14,7 +14,11 @@ api_key = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=api_key)
 # Initialize Flask
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "https://tink-her-hack-temp-phi.vercel.app"
+])
 
 # Gemini Model
 model = genai.GenerativeModel("gemini-2.5-flash")
