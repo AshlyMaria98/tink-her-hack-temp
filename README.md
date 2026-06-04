@@ -15,160 +15,369 @@
 ### Hosted Project Link
  https://tink-her-hack-temp-phi.vercel.app/
 
-
 ### Project Description
-idea2infra is an AI-powered Master System Architect designed to help developers and startup founders instantly plan their software infrastructure. By simply inputting an app idea and expected user scale, the system automatically generates a comprehensive architecture blueprint, complete with tech stack recommendations, dynamic visual flowcharts, and interactive cloud cost estimations. It perfectly bridges the gap between a raw concept and a ready-to-build technical foundation.
 
-### The Problem statement
-Many beginners and non-technical founders have great software ideas but lack the technical expertise to design the underlying system infrastructure. They struggle to choose the right tech stack, design database schemas, or estimate monthly cloud hosting costs, which significantly delays project development.
+idea2infra is a full-stack AI-powered System Architecture Generator designed to help developers, students, and startup founders transform software ideas into professional technical blueprints. By simply entering a project description and expected user scale, users receive architecture recommendations, technology stack suggestions, database planning, API design guidance, scalability strategies, visual architecture diagrams, cost estimations, and learning resources. The platform bridges the gap between an idea and a ready-to-build software solution.
+
+### The Problem Statement
+
+Many students, beginner developers, and non-technical founders have innovative software ideas but lack the experience needed to design scalable system architectures. Choosing the right technologies, planning databases, estimating infrastructure costs, and understanding deployment strategies can be overwhelming and often slow down project development.
 
 ### The Solution
-idea2infra instantly transforms raw app ideas into professional technical blueprints. By simply typing an app idea and expected user scale, our system uses the Gemini API to generate a professional architecture plan. It visually maps the system using dynamic Mermaid.js flowcharts, provides an interactive AWS/Firebase cost estimator, curates learning resources, and exports a ready-to-code Frontend/Backend boilerplate `.zip` workspace.
 
----
+idea2infra automates the software architecture planning process using Google Gemini AI and a Flask backend. Users can generate complete architecture blueprints from a simple project idea, visualize system flow using Mermaid.js diagrams, estimate infrastructure costs, explore recommended learning resources, and export results as PDFs, images, or starter project workspaces. The platform also includes saved project management, refresh-state persistence, dark/light theme support, and intelligent fallback architectures when AI services are unavailable.
+
 
 ## Technical Details
 
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: HTML5, CSS3, Vanilla JavaScript
+Languages:
+- HTML5
+- CSS3
+- JavaScript
+- Python
 
-- Frameworks used: None (Pure Vanilla implementation for extreme lightweight performance)
+Frameworks:
+- Flask
 
-- Libraries used: Mermaid.js, html2pdf.js, JSZip, Marked.js
+Libraries:
+- Mermaid.js
+- Marked.js
+- DOMPurify
+- html2pdf.js
+- JSZip
 
-- Tools used: VS Code, Git, GitHub, Google Gemini 2.5 Flash API
-
+Tools:
+- Git
+- GitHub
+- VS Code
+- Google Gemini API
+- Vercel
+- Render
 
 **For Hardware:**
-  none.this is a web software project
-
+  None. This is a web-based software project and does not require any dedicated hardware components.
 ## Features
 
 List the key features of your project:
-- Feature 1: Feature 1: AI Architecture Generation: Instantly turns text descriptions into full system blueprints with      strict prompt-injection guardrails.
-- Feature 2: Dynamic Flowcharts: Renders Mermaid.js architecture diagrams visually on the screen that scale perfectly for exports.
-- Feature 3: Interactive Cost Estimator: Context-aware calculator that estimates monthly cloud hosting budgets based on the AI's recommended tech stack (Enterprise vs BaaS vs Static).
-- Feature 4: Boilerplate Exporter & PDF: Single-click download of a ready-to-code Frontend/Backend .zip starter workspace and a pixel-perfect PDF report.
+- Feature 1: AI-Powered Architecture Generation:
 
+Generate complete software architecture blueprints from a simple project description and expected user scale using Google Gemini AI.
+- Feature 2: Dynamic Architecture Diagrams:
+
+Automatically renders architecture flowcharts using Mermaid.js for visual understanding of system components.
+- Feature 3:Smart Fallback System:
+
+When Gemini API is unavailable or quota limits are reached, the system automatically provides predefined architecture templates based on project type.
+
+- Feature 4:Saved Projects Management:
+
+Users can:
+-Save generated architectures automatically
+-Search saved projects
+-Open previously generated architectures
+-Delete saved projects
+
+- Feature 5:Refresh Persistence:
+
+The application remembers:
+
+-Current page/tab
+-Opened saved project
+-Theme preference
+
+Users remain on the same page even after refreshing the browser.
+- Feature 6: Interactive Cost Estimator:
+
+ Context-aware calculator that estimates monthly cloud hosting budgets based on the AI's recommended tech stack (Enterprise vs BaaS vs Static).
+
+- Feature 7:Complexity Analyzer:
+
+Calculates a project complexity score and classifies architectures as Beginner, Intermediate, or Advanced
+
+- Feature 8:Dynamic Learning Hub:
+
+Suggests learning resources and tutorials for technologies detected in the generated architecture.
+
+- Feature 9: Boilerplate Exporter : Single-click download of a ready-to-code Frontend/Backend .zip starter workspace 
+- Feature 10:Export Tools:
+
+Users can:
+
+-Download architecture reports as PDF
+-Download Mermaid diagrams as PNG
+-Copy generated architectures
+
+- Feature 11:Theme Support:
+
+Light and Dark mode support with persistent user preference.
+- Feature 12:Deployment Ready:
+
+Frontend hosted on Vercel and backend hosted on Render with REST API communication.
 ---
-
 ## Implementation
 
-### For Software:
+### For Software
 
 #### Installation
+
+```bash
 # Clone the repository
-git clone https://github.com/your-username/tink-her-hack-temp.git
+git clone https://github.com/AshlyMaria98/tink-her-hack-temp.git
 
 # Navigate to the project directory
 cd tink-her-hack-temp
+```
 
-# Add your API Key
- 1. Open src/script.js
- 2. Replace the GEMINI_API_KEY variable with your actual Google Gemini API key
+#### Backend Setup
 
+```bash
+# Navigate to backend folder
+cd backend
 
-#### Run
- No complex build tools required! 
- Simply open the index.html file in your browser:
-open public/index.html
+# Create virtual environment
+python -m venv venv
 
- Alternatively, use VS Code Live Server extension to serve on port 5500
+# Activate virtual environment
+
+# Windows
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+Create a `.env` file inside the backend folder:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+#### Run Backend
+
+```bash
+python app.py
+```
+
+Backend will run on:
+
+```text
+http://127.0.0.1:5000
+```
+
+#### Run Frontend
+
+Open the project root folder in VS Code and start the Live Server extension.
+
+Frontend will run on:
+
+```text
+http://127.0.0.1:5500
+```
+
+#### Production Deployment
+
+Frontend:
+
+* Vercel
+
+Backend:
+
+* Render
+
+Environment Variables:
+
+* GEMINI_API_KEY
+
+---
 
 ## Project Documentation
 
-### For Software:
+### For Software
 
-#### Screenshots (Add at least 3)
+#### Screenshots
 
 ![alt text](<docs/Screenshot 1.png>)
-  The idea2infra Input Dashboard and terminal-style loading sequence
 
+**Idea2Infra Dashboard** – Users enter project requirements and expected scale while viewing the terminal-style AI generation process.
 
 ![alt text](docs/Screenshot2.png)
-The AI-Generated System Architecture and dynamically rendered Mermaid.js Flowchart.
+
+**Generated Architecture Blueprint** – AI-generated architecture recommendations with Mermaid.js visual system diagrams.
+
 ![alt text](docs/Screenshot3.png)
-The Interactive Cost Estimator, tailored Learning Hub, and Export Workspace buttons.
+
+**Architecture Analysis Tools** – Interactive cost estimator, complexity score calculator, learning resources, and export features.
+
+![alt text](docs/Screenshot4.png)
+
+**Saved Projects Management** – Search, open, delete, and persist generated architectures across browser refreshes.
+
+![alt text](docs/Screenshot5.png)
+
+**Export & Productivity Features** – Download PDF reports, export diagrams, copy architectures, and generate starter workspace ZIP files.
+
 
 
 ## Additional Documentation
 
-### For Web Projects with Backend:
+### For Web Projects with Backend
 
 #### API Documentation
 
-**Base URL:** `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`
+**Frontend URL:**
+https://tink-her-hack-temp-phi.vercel.app/
 
-*Note: idea2infra operates entirely client-side (serverless). We do not host a custom backend database; instead, we communicate directly with the external Google Gemini API.*
+**Backend URL:**
+https://idea2infra-backend.onrender.com
 
-##### Endpoints
+*Note: idea2infra now uses a Flask backend as a secure middleware between the frontend and Gemini API. The Gemini API key is stored securely on the backend using environment variables and is never exposed to users.*
 
-**POST /generateContent**
-- **Description:** Sends the user's project idea to the Gemini API with strict architecture prompt constraints.
-- **Request Body:**
+### Endpoints
+
+#### POST /generate
+
+**Description:**
+Generates a complete system architecture using Gemini AI based on the user's project description and expected scale.
+
+**Request Body**
+
 ```json
 {
-  "contents": [{
-    "parts": [{
-      "text": "Act as a Master System Architect. Generate an architecture for: [User Input]"
-    }]
-  }]
-}
-Response:
-
-JSON
-{
-  "candidates": [{
-    "content": {
-      "parts": [{
-        "text": "### Executive Summary\n[Generated Markdown and Mermaid Code]"
-      }]
-    }
-  }]
+  "description": "Food Delivery App",
+  "scale": "Small (MVP, <1000 users)"
 }
 ```
 
+**Success Response**
+
+```json
+{
+  "success": true,
+  "response": "### Executive Summary..."
+}
+```
+
+**Fallback Response**
+
+```json
+{
+  "success": true,
+  "fallback": true,
+  "response": "Cached architecture template..."
+}
+```
+
+---
+
+#### POST /fallback
+
+**Description:**
+Returns a predefined architecture template when Gemini AI is unavailable or quota limits are reached.
+
+**Request Body**
+
+```json
+{
+  "description": "Chat Application"
+}
+```
+
+**Response**
+
+```json
+{
+  "success": true,
+  "fallback": true,
+  "response": "Fallback architecture content..."
+}
+```
+
+---
+
+### State Persistence
+
+idea2infra uses browser localStorage to preserve:
+
+* Saved architecture projects
+* Theme preferences (Light/Dark Mode)
+* Last active page/tab
+* Opened saved project state
+
+This ensures users can refresh the browser and continue from the same page without losing their work.
 
 ## AI Tools Used (Optional - For Transparency Bonus)
-AI Tools Used
-Tool Used: Google Gemini
 
-Purpose: Pair-programming assistance, debugging library conflicts, and refining CSS layouts.
+### AI Tools Used
 
-Debugging SVG scaling issues with html2pdf.js and Mermaid.js.
+**Tool Used:** Google Gemini, ChatGPT, Claude
 
-Generating the boilerplate code folder structures for the JSZip exporter.
+### Purpose
 
-Refining CSS flexbox properties for a responsive dashboard.
+AI tools were used as development assistants for:
 
-### Key Prompts Used:
+- Backend development using Flask
+- Gemini API integration and debugging
+- Prompt engineering and architecture generation logic
+- Mermaid.js diagram rendering improvements
+- PDF export and JSZip workspace export features
+- Saved Projects persistence and refresh-state restoration
+- Fallback architecture system implementation
+- UI/UX refinements and responsive design improvements
+- Deployment troubleshooting for Vercel and Render
 
-"How do I force html2canvas to read a Mermaid SVG at 100% width instead of a hardcoded pixel size?"
+### Key Prompts Used
 
-"Write a JavaScript function using JSZip to create a frontend and backend folder structure with boilerplate code."
+- "Design a scalable system architecture generator using Gemini API."
+- "Create a Flask backend endpoint to securely handle Gemini API requests."
+- "Generate Mermaid.js architecture diagrams from AI responses."
+- "Implement localStorage-based saved projects with open, search, and delete functionality."
+- "Restore application state after page refresh using localStorage."
+- "Generate downloadable PDF reports and starter code workspaces."
+- "Debug deployment issues between Vercel frontend and Render backend."
 
-"Write a JavaScript function to dynamically scan text for the words 'AWS' or 'Firebase' and change a pricing multiplier."
+### Percentage of AI-generated Code
 
-### Percentage of AI-generated code: Approximately 25%
+Approximately 30–45%
 
-### Human Contributions:
+### Human Contributions
 
-Core application architecture and feature planning.
-
-Gemini API integration logic and JSON parsing.
-
-Strict prompt-engineering and guardrail implementation.
-
-UI/UX design decisions, color theming, and responsive layout assembly.
+- Overall project planning and feature selection
+- UI/UX design decisions
+- System architecture prompt design and validation logic
+- Feature integration and testing
+- Backend deployment and environment configuration
+- Saved project workflow design
+- Application state persistence logic
+- Documentation preparation and project presentation
 
 ### Team Contributions
-Ann Mary Anilson: Frontend layout design, UI/UX styling, CSS implementation, responsive DOM manipulation, and project documentation.
 
-Ashly Maria P.S: Gemini API integration, prompt engineering guardrails, PDF generation logic, JSZip boilerplate export feature, and Interactive Cost Estimator logic.
+**Ann Mary Anilson**
+- Frontend UI design and styling
+- CSS implementation and responsive layouts
+- User experience improvements
+- Frontend integration with Gemini-powered architecture generation
+- Learning Resources Hub
+- Documentation and project presentation support
+- Testing and validation
+- System integration and debugging
+**Ashly Maria P.S**
+- Flask backend development
+- Prompt engineering and guardrail implementation
+- Mermaid.js diagram rendering
+- Saved Projects system
+- Refresh-state persistence
+- PDF export functionality
+- JSZip workspace exporter
+- Cost Estimator and Complexity Analyzer
+- Deployment on Vercel and Render
+
 
 ### License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Made with ❤️ at TinkerHub
+Made with ❤️ by Team Quiet Pixels

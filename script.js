@@ -98,7 +98,7 @@ async function fetchArchitecture(description, scale) {
 
 const timeoutId = setTimeout(() => {
     controller.abort();
-}, 15000); // 15 seconds timeout
+}, 20000); // 20 seconds timeout
 
 const response = await fetch(`${BACKEND_URL}/generate`, {
     method: 'POST',
