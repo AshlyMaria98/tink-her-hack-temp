@@ -14,6 +14,9 @@ api_key = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=api_key)
 # Initialize Flask
 app = Flask(__name__)
+@app.route('/')
+def health_check():
+    return jsonify({"status": "ok"}), 200
 CORS(app, origins=[
     "http://localhost:5500",
     "http://127.0.0.1:5500",
