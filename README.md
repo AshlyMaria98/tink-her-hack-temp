@@ -382,4 +382,4 @@ Approximately 30–45%
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Made with ❤️ by Team Quiet Pixels
+Made with ❤️ by Team Quiet Pixels.
