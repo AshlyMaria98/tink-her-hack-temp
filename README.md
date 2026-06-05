@@ -61,61 +61,64 @@ Tools:
   None. This is a web-based software project and does not require any dedicated hardware components.
 ## Features
 
-List the key features of your project:
+## Features
+
+idea2infra provides the following capabilities:
 - Feature 1: AI-Powered Architecture Generation:
 
-Generate complete software architecture blueprints from a simple project description and expected user scale using Google Gemini AI.
+  Generate complete software architecture blueprints from a simple project description and expected user scale using Google Gemini AI.
 - Feature 2: Dynamic Architecture Diagrams:
 
-Automatically renders architecture flowcharts using Mermaid.js for visual understanding of system components.
+  Automatically renders architecture flowcharts using Mermaid.js for visual understanding of system components.
 - Feature 3:Smart Fallback System:
 
-When Gemini API is unavailable or quota limits are reached, the system automatically provides predefined architecture templates based on project type.
+  When Gemini API is unavailable or quota limits are reached, the system automatically provides predefined architecture templates based on project type.
 
 - Feature 4:Saved Projects Management:
 
-Users can:
--Save generated architectures automatically
--Search saved projects
--Open previously generated architectures
--Delete saved projects
+  Users can:
+    -Save generated architectures automatically
+    -Search saved projects
+    -Open previously generated architectures
+    -Delete saved projects
 
 - Feature 5:Refresh Persistence:
 
-The application remembers:
+  The application remembers:
 
--Current page/tab
--Opened saved project
--Theme preference
+    -Current page/tab
+    -Opened saved project
+    -Theme preference
 
-Users remain on the same page even after refreshing the browser.
+  Users remain on the same page even after refreshing the browser.
 - Feature 6: Interactive Cost Estimator:
 
- Context-aware calculator that estimates monthly cloud hosting budgets based on the AI's recommended tech stack (Enterprise vs BaaS vs Static).
+  Context-aware calculator that estimates monthly cloud hosting budgets based on the AI's recommended tech stack (Enterprise vs BaaS vs Static).
 
 - Feature 7:Complexity Analyzer:
 
-Calculates a project complexity score and classifies architectures as Beginner, Intermediate, or Advanced
+  Calculates a project complexity score and classifies architectures as Beginner, Intermediate, or Advanced
 
 - Feature 8:Dynamic Learning Hub:
 
-Suggests learning resources and tutorials for technologies detected in the generated architecture.
+  Suggests learning resources and tutorials for technologies detected in the generated architecture.
 
-- Feature 9: Boilerplate Exporter : Single-click download of a ready-to-code Frontend/Backend .zip starter workspace 
+- Feature 9: Boilerplate Exporter :
+   Single-click download of a ready-to-code Frontend/Backend .zip starter workspace 
 - Feature 10:Export Tools:
 
-Users can:
+  Users can:
 
--Download architecture reports as PDF
--Download Mermaid diagrams as PNG
--Copy generated architectures
+  -Download architecture reports as PDF
+  -Download Mermaid diagrams as PNG
+  -Copy generated architectures
 
 - Feature 11:Theme Support:
 
-Light and Dark mode support with persistent user preference.
+  Light and Dark mode support with persistent user preference.
 - Feature 12:Deployment Ready:
 
-Frontend hosted on Vercel and backend hosted on Render with REST API communication.
+  Frontend hosted on Vercel and backend hosted on Render with REST API communication.
 ---
 ## Implementation
 
