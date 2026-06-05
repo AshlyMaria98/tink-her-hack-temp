@@ -195,7 +195,15 @@ Environment Variables:
 * GEMINI_API_KEY
 
 ---
+## System Architecture
 
+The application follows a client-server architecture:
+
+1. Frontend (HTML/CSS/JavaScript) collects user requirements.
+2. Requests are sent to a Flask backend.
+3. Flask securely communicates with Gemini AI.
+4. Responses are rendered as Markdown and Mermaid diagrams.
+5. Projects are stored locally using browser localStorage.
 ## Project Documentation
 
 ### For Software
