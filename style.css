@@ -538,3 +538,10 @@ textarea:focus, select:focus {
         font-size: 1.5rem;
     }
 }
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #888;
+    font-size: 14px;
+}
